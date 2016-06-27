@@ -1,0 +1,9 @@
+---
+# file: simple-playbook.yml
+
+- hosts: node_exporter_servers
+  become: True
+  roles:
+    - williamyeh.prometheus
+  vars:
+    prometheus_components: [ "node_exporter" ]
