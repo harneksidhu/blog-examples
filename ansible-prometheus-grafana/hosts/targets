@@ -1,11 +1,11 @@
 # Hosts
 
+[host0]
+159.203.41.121 ansible_ssh_private_key_file="{{ lookup('env', 'PWD') }}/keys/id_rsa" ansible_user=root
+
+[prometheus_server:children]
+
 [node_exporter_servers:children]
 host0
 
 [grafana_server]
-
-[prometheus_server]
-
-[host0]
-159.203.41.121 ansible_ssh_private_key_file="{{ lookup('env', 'PWD') }}/keys/id_rsa" ansible_user=root
