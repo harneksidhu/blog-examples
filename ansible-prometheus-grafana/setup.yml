@@ -1,20 +1,19 @@
 ---
 # file: simple-playbook.yml
 
-- hosts: node_exporter_servers
+- hosts: node_exporter_servers #port 9100
   become: True
   roles:
     - williamyeh.prometheus
   vars:
     prometheus_components: [ "node_exporter" ]
     prometheus_node_exporter_version: 0.12.0
-    prometheus_node_exporter_opts: -auth.pass='{{ node_exporter_password }}'' -auth.user='{{ node_exporter_user }}''
 
-- hosts: prometheus_server
+- hosts: prometheus_server #port 9090
   become: True
   roles:
-  	- williamyeh.prometheus
+    - williamyeh.prometheus
   vars:
-  	prometheus_components: [ "prometheus" ]
-  	prometheus_version: 0.20.0
-  	prometheus_conf_main: files/prometheus.j2
+    prometheus_components: [ "prometheus" ]
+    prometheus_version: 0.20.0
+    prometheus_conf_main: files/prometheus.j2

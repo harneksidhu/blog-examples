@@ -1,10 +1,8 @@
 scrape_configs:
-  {% for host in groups['node_exporter_servers'] %}
-      - job_name: '{{ hostvars[host]['ansible_hostname'] }}'
-      basic_auth:
-        username: {{ node_exporter_user }}
-        password: {{ node_exporter_password }}
+{% for host in groups['node_exporter_servers'] %}
+  - job_name: {{ hostvars[host]['ansible_hostname'] }}
 
-      static_configs:
-        - targets: ['{{ hostvars[host]['ansible_default_ipv4']['address'] }}:9100']
-  {% endfor %}
+    static_configs:
+      - targets: ['{{ hostvars[host]['ansible_default_ipv4']['address'] }}:9100']
+
+{% endfor %}
