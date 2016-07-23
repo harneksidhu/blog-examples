@@ -41,3 +41,27 @@
   tasks:
   - name: Install python2
     raw: apt-get -y install python-minimal
+
+- hosts: host0
+  remote_user: root
+  tasks:
+  - name: Install nginx
+    apt: 
+      name: nginx
+      state: present
+  - name: Update nginx.conf
+    copy:
+      src: files/nginx.conf
+      dest: /etc/nginx/nginx.conf
+  - name: Create /home/static directory
+    file:
+      path: /home/static
+      state: directory
+  - name: Copy index.html
+    copy:
+      src: files/index.html
+      dest: /home/static/index.html
+  - name: Restart nginx service
+    service:
+      name: nginx
+      state: restarted
