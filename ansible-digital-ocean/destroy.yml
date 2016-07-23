@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  become: yes
+  become_user: root
+  tasks:
+  - name: Remove droplet
+    digital_ocean:
+        state: absent
+        command: droplet
+        name: host0
+        api_token: "{{ digital_ocean_api_token }}"
+        unique_name: yes
