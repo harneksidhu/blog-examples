@@ -2,10 +2,9 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/trusty64"
-  config.vm.synced_folder ".", "/home/vagrant"
+  config.vm.synced_folder ".", "/home/vagrant/ansible-digital-ocean/"
   config.ssh.username = 'vagrant'
-  config.ssh.password = 'vagrant'
-  config.vm.provision :shell, :path => "vagrantProvision.sh"
+  config.vm.provision :shell, :path => "provision.sh", privileged: false
   
 #  config.vm.provision "shell" do |s|
 #    s.path = "scripts.sh"
