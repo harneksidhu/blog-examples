@@ -2,3 +2,9 @@
 .cache/
 .pip/
 .vagrant/
+.ansible/
+.local/
+.profile
+.ssh/
+.vim/
+.viminfo
