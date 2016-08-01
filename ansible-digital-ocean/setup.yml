@@ -4,9 +4,6 @@
   - name: Store public ssh key
     shell: cat keys/id_rsa.pub
     register: public_key
-  - name: Store private ssh key
-    shell: cat keys/id_rsa
-    register: private_key
   - name: Store public ssh key in digital ocean
     digital_ocean:
       state: present
@@ -35,7 +32,6 @@
   - pause: seconds=20
 
 - hosts: host0
-  strategy: free
   remote_user: root
   gather_facts: no
   tasks:
